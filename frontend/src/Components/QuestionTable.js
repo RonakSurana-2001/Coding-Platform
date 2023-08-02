@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../Styles/QuestionTableStyle.css';
 
 export default function QuestionTable(props) {
@@ -6,6 +6,8 @@ export default function QuestionTable(props) {
   const toggleColor = () => {
     setIsButtonClicked((prevIsButtonClicked) => !prevIsButtonClicked);
   };
+
+  console.log(props.color);
 
   return (
     <>
@@ -25,8 +27,9 @@ export default function QuestionTable(props) {
         <td>{props.val.Level}</td>
         <td>
           <button
-            className={`button-design ${isButtonClicked==true ? 'toggleColor' :""}`}
+            className="button-design"
             onClick={toggleColor}
+            style={{ backgroundColor: props.color }} // Use the color prop as the background color
           ></button>
         </td>
         <td>
@@ -36,4 +39,3 @@ export default function QuestionTable(props) {
     </>
   );
 }
-
