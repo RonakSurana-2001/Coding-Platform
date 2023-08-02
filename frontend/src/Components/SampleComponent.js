@@ -6,6 +6,7 @@ export default function SampleComponent() {
   const [userProb, setUserProb] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [getDifflevel,setDifflevel]=useState(null);
+  // const [isSolved,setisSolved]=useState(null);
 
   const getAllQuestion = async () => {
     const response = await fetch("http://localhost:5000/app/sendQuestions", {
@@ -58,18 +59,54 @@ export default function SampleComponent() {
       const num = [];
       if (window.location.pathname === '/homePage') {
         for (let i = 0; i < problems.length; i++) {
-          if (problems[i].Level == getDifflevel) {
+          if (problems[i].Level === getDifflevel) {
             num.push(problems[i]);
           }
         }
       }
       setUserProb(num);
     }
-  }, [getDifflevel, setUserProb])
+  }, [getDifflevel, setUserProb,problems])
 
   let func = (vale) => {
     setDifflevel(vale)
   }
+
+  // useEffect(() => {
+  //   if (isSolved != null) {
+  //     const num1 = [];
+  //     let flag=1;
+  //     if (window.location.pathname === '/homePage') {
+  //       for(let i=0;i<userInfo[0].problemsSolved.length;i++)
+  //       {
+  //         for(let j=0;j<userProb.length;j++)
+  //         {
+  //           if((""+userProb[j].sno)===(userInfo[0].problemsSolved[i]))
+  //           {
+  //             num1.push(userProb[j]);
+  //             flag=0;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     if(flag==0){
+  //       setUserProb(num1);
+  //     }
+  //   }
+  // }, [isSolved, setUserProb])
+
+
+  // let sortsolved=()=>{
+  //   if(isSolved==null){
+  //     setisSolved(true);
+  //   }
+  //   if(isSolved==="true"){
+  //     setisSolved(false);
+  //   }
+  //   if(isSolved==="false"){
+  //     setisSolved(true);
+  //   }
+  // }
 
   return (
     <>
@@ -103,7 +140,7 @@ export default function SampleComponent() {
               {userProb.map((indx, index) => {
                 const isQuestionSolved = userInfo.length > 0 && userInfo[0].problemsSolved.includes("" + indx.sno);
                 const color = isQuestionSolved ? "green" : "red";
-
+                // console.log(userInfo[0]);
                 return <QuestionTable val={indx} key={index} color={color} />;
               })}
             </tbody>

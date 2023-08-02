@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 import '../Styles/QuestionTableStyle.css';
 
 export default function QuestionTable(props) {
@@ -22,8 +22,6 @@ export default function QuestionTable(props) {
     console.log(u);
     setButtonColor((prevColor) => (prevColor === "red" ? "green" : "red"));
   };
-
-  // console.log(props.color);
 
   return (
     <>

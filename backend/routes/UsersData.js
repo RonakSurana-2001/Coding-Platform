@@ -17,7 +17,7 @@ router.post('/getUser', (req, res) => {
             res.json(usersData);
         }
         else {
-            console.log("Already Exists");
+            // console.log("Already Exists");
             res.json(users);
         }
     })
