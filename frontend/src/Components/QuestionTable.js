@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../Styles/QuestionTableStyle.css';
 
 export default function QuestionTable(props) {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const toggleColor = () => {
-    setIsButtonClicked((prevIsButtonClicked) => !prevIsButtonClicked);
+  const [buttonColor, setButtonColor] = useState(props.color);
+  const updateUserDetails = async () => {
+    const response = await fetch("http://localhost:5000/auth/getUpdate", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userId: localStorage.getItem("userId"),quesNo:props.val.sno
+      })
+    });
+    const json = await response.json();
+    return json;
   };
 
-  console.log(props.color);
+  const toggleColor = async () => {
+    let u=await updateUserDetails();
+    console.log(u);
+    setButtonColor((prevColor) => (prevColor === "red" ? "green" : "red"));
+  };
+
+  // console.log(props.color);
 
   return (
     <>
@@ -29,7 +45,7 @@ export default function QuestionTable(props) {
           <button
             className="button-design"
             onClick={toggleColor}
-            style={{ backgroundColor: props.color }} // Use the color prop as the background color
+            style={{ backgroundColor: buttonColor  }}
           ></button>
         </td>
         <td>

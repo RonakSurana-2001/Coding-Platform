@@ -53,18 +53,6 @@ export default function SampleComponent() {
     fetchData();
   }, []);
 
-  // const getEasy = (level1) => {
-  //   const num = [];
-  //   if (window.location.pathname === '/homePage') {
-  //     for (let i = 0; i < problems.length; i++) {
-  //       if (problems[i].Level === level1) {
-  //         num.push(problems[i]);
-  //       }
-  //     }
-  //   }
-  //   setUserProb(num);
-  // };
-
   useEffect(() => {
     if (getDifflevel != null) {
       const num = [];
