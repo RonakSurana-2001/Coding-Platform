@@ -58,7 +58,9 @@
     text-decoration: none;
     color: black;
 }
-
+.y1{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 1000px) {
     #navbar-icon{

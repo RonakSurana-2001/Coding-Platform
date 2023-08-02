@@ -7,17 +7,6 @@ import Navbar from './Components/Navbar';
 import SampleComponent2 from './Components/SampleComponent2';
 
 function App() {
-  // Load isAuth from localStorage or default to false if not available
-  const [isAuth, setIsAuth] = useState(() => {
-    const storedAuth = localStorage.getItem('isAuth');
-    return storedAuth ? JSON.parse(storedAuth) : false;
-  });
-
-  // Save isAuth to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('isAuth', JSON.stringify(isAuth));
-  }, [isAuth]);
-
   return (
     <>
       <BrowserRouter>
@@ -32,7 +21,7 @@ function App() {
             element={<SampleComponent />}
           />
           <Route
-            path="/videos"
+            path="/saved"
             element={<SampleComponent2 />}
           />
         </Routes>
