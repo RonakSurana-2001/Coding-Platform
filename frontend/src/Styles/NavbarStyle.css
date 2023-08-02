@@ -1,0 +1,116 @@
+.navbar-main {
+    background-color:darkturquoise;
+    display: flex;
+    flex-direction: row;
+    font-size: 40px;
+    height: 100px;
+}
+#navbar-icon{
+    display: none;
+}
+.navbar-main-0 {
+    /* background-color: blue; */
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-main-1 {
+    /* background-color: antiquewhite; */
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-main-2 {
+    /* background-color: red; */
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-main-button {
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar-main-button button {
+    font-size: 35px;
+    border: none;
+    background-color: darkturquoise;
+}
+
+.navbar-items {
+    /* background-color: aqua; */
+    padding-inline: 25px;
+}
+
+.n-1 {
+    text-decoration: none;
+    color: black;
+}
+
+
+@media screen and (max-width: 1000px) {
+    #navbar-icon{
+        display: flex;
+        width: 100%;
+        /* background-color: aqua; */
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar-main {
+        /* background-color: aqua; */
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .toggle{
+        display: none;
+    }
+    .navbar-main-0 {
+        /* background-color: blue; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .navbar-main-1 {
+        /* background-color: antiquewhite; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-main-2 {
+        /* background-color: red; */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .y1{
+        padding:30px;
+        font-size: 50px;
+    }
+    .navbar-main-button button {
+        font-size: 50px;
+    }
+}
