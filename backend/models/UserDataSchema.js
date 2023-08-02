@@ -7,6 +7,9 @@ const UserData = new Schema({
     },
     problemsSolved: {
         type: Array
+    },
+    savedQues:{
+        type:Array
     }
 });
 

@@ -10,7 +10,8 @@ router.post('/getUser', (req, res) => {
         if (users.length == 0) {
             let usersData = {
                 userId: usersId,
-                problemsSolved: ["0"]
+                problemsSolved: ["0"],
+                savedQues: ["0"]
             }
             const user = UserData(usersData);
             user.save();
@@ -63,6 +64,44 @@ router.post('/getUpdate', (req, res) => {
             console.log("Some Error encountered");
         });
 })
+
+router.post('/savedQues', (req, res) => {
+    const usersId = req.body.userId;
+    // console.log(usersId);
+    const questionNo = "" + req.body.quesNo;
+    let temp = [];
+    UserData.find({ userId: usersId }).exec().then((users) => {
+        temp = users[0].savedQues;
+        const index = temp.indexOf(questionNo);
+        if (index > "-1") { // only splice array when item is found
+            temp.splice(index, 1); // 2nd parameter means remove one item only
+            UserData.findOneAndUpdate({ userId: usersId }, { savedQues: temp }).exec().then((users) => {
+                if (users.length != 0) {
+                    res.json("Deleted");
+                }
+            })
+                .catch((error) => {
+                    console.log("Some Error encountered");
+                });
+        }
+        else {
+            temp = users[0].savedQues;
+            temp.push(questionNo);
+            UserData.findOneAndUpdate({ userId: usersId }, {savedQues: temp }).exec().then((users) => {
+                if (users.length != 0) {
+                    res.json("Saved");
+                }
+            })
+                .catch((error) => {
+                    console.log("Some Error encountered");
+                });
+        }
+    })
+        .catch((error) => {
+            console.log("Some Error encountered");
+        });
+})
+
 
 
 module.exports = router;

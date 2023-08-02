@@ -44,7 +44,7 @@ function Navbar(props) {
                         <Link to="/homePage" className='n-1'>Problems</Link>
                     </div>
                     <div className='navbar-items y1'>
-                        <Link to="/videos" className='n-1'>Videos</Link>
+                        <Link to="/videos" className='n-1'>Saved</Link>
                     </div>
                 </div>
                 <div className='navbar-main-2'>

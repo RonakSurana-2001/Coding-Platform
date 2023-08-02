@@ -139,9 +139,11 @@ export default function SampleComponent() {
             <tbody>
               {userProb.map((indx, index) => {
                 const isQuestionSolved = userInfo.length > 0 && userInfo[0].problemsSolved.includes("" + indx.sno);
+                const isQuestionSaved=userInfo.length > 0 && userInfo[0].savedQues.includes(""+indx.sno);
                 const color = isQuestionSolved ? "green" : "red";
+                const savedQuesColor=isQuestionSaved ? "green" : "red";
                 // console.log(userInfo[0]);
-                return <QuestionTable val={indx} key={index} color={color} />;
+                return <QuestionTable val={indx} key={index} color={color} savedQuesColor={savedQuesColor}/>;
               })}
             </tbody>
           </table>
