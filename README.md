@@ -1,6 +1,6 @@
 
 # Project Title
-This is a Coding Tracking Platform named to keep track of your Coding Progress.  
+This is a Coding Tracking Platform named WeCode to keep track of your Coding Progress.  
 Generally it is seen that the DSA sheets like Love babbar final 450 comes in Spreadsheet format it becomes difficult to sort Levels of questions ,Keep track of Topics of which we have solved questions,how many questions we have solved etc. To solve this issue I have created a web application to solve these problems. 
 
 
@@ -28,7 +28,7 @@ Generally it is seen that the DSA sheets like Love babbar final 450 comes in Spr
 To run in your machine
 
 ```bash
-  git clone https://github.com/RonakSurana-2001/Jaipur-Metro-Signal-And-Telecom.git
+  git clone https://github.com/RonakSurana-2001/Coding-Platform.git
   npm i
 ```
 
