@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router();
 const UserData = require('../models/UserDataSchema')
+const UserInfo=require('../models/UserInformationSchema')
+
 
 router.post('/getUser', (req, res) => {
     const usersId = req.body.userId;
@@ -87,7 +89,7 @@ router.post('/savedQues', (req, res) => {
         else {
             temp = users[0].savedQues;
             temp.push(questionNo);
-            UserData.findOneAndUpdate({ userId: usersId }, {savedQues: temp }).exec().then((users) => {
+            UserData.findOneAndUpdate({ userId: usersId }, { savedQues: temp }).exec().then((users) => {
                 if (users.length != 0) {
                     res.json("Saved");
                 }
@@ -102,6 +104,29 @@ router.post('/savedQues', (req, res) => {
         });
 })
 
-
+router.post('/setUserDetails', (req, res) => {
+    // console.log(req.body.emailUser,req.body.usersId);
+    UserInfo.find({ useId: req.body.usersId }).exec().then((users) => {
+        if(users.length==0){
+            console.log(req.body.usersId);
+            const data={
+                useId:req.body.usersId,
+                userName:req.body.userName,
+                userEmail:req.body.emailUser,
+                userPhoto:req.body.userPhoto
+            };
+            const userI=UserInfo(data);
+            userI.save();
+            // console.log(userI);
+            res.json(data);
+        }
+        else{
+            res.json(users);
+        }
+    })
+        .catch((error) => {
+            console.log("Some Error encountered");
+        });
+})
 
 module.exports = router;

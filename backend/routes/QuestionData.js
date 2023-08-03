@@ -3,11 +3,11 @@ const router = express.Router();
 const ques=require("../models/QuestionSchema");
 
 const q={
-    "name":"Two SUm",
-    "linkQues":"https://leetcode.com/problems/two-sum",
-    "Topic":["Array"],
+    "name":"bottom-view-of-binary-tree",
+    "linkQues":"https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1",
+    "Topic":["Binary Tree","Vector"],
     "Level":"Medium",
-    "sno":"2"
+    "sno":"3"
 };
 
 router.post('/createQuestions',(req,res)=>{

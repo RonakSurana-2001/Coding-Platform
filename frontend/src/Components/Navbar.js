@@ -46,6 +46,9 @@ function Navbar(props) {
                     <div className='navbar-items y1'>
                         <Link to="/saved" className='n-1'>Saved</Link>
                     </div>
+                    <div className='navbar-items y1'>
+                        <Link to="/profile" className='n-1'>Profile</Link>
+                    </div>
                 </div>
                 <div className='navbar-main-2'>
                     <div className='navbar-main-button'>

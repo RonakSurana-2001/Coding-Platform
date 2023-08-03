@@ -15,7 +15,8 @@ const questionData = new Schema({
         type:String
     },
     sno: {
-        type: Number
+        type: Number,
+        unique:true
     }
 });
 

@@ -3,14 +3,14 @@ const { Schema } = mongoose;
 
 const UserData = new Schema({
     userId: {
-        type: String,
+        type: String
     },
-    problemsSolved: {
-        type: Array
+    problemsSolved:{
+        type:Array
     },
     savedQues:{
         type:Array
     }
 });
 
-module.exports = mongoose.model('UserData', UserData);
+module.exports = mongoose.model('userdata', UserData);

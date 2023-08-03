@@ -5,6 +5,22 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 // import { signInWithGoogle } from './firebase';
 export default function LoginButton(props) {
+
+
+    let setDetailsInStorage = async (result) => {
+        const response = await fetch("http://localhost:5000/auth/setUserDetails", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usersId: result.user.uid, emailUser: result.user.email, userPhoto: result.user.photoURL, userName: result.user.displayName
+            })
+        });
+        const json = await response.json();
+    };
+
+
     const firebaseConfig = {
         apiKey: "AIzaSyAA9NOuwTuYdLEb0uAlvOitdU6xNn30aZk",
         authDomain: "codingapp-cf09a.firebaseapp.com",
@@ -18,12 +34,15 @@ export default function LoginButton(props) {
     const auth = getAuth(app);
 
     const provider = new GoogleAuthProvider();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
             navigate("/homePage");
-            localStorage.setItem("isLogin","true");
-            localStorage.setItem("userId",result.user.uid);
+            if(result!=undefined && result.length!=0){
+                setDetailsInStorage(result);
+            }
+            localStorage.setItem("isLogin", "true");
+            localStorage.setItem("userId", result.user.uid);
         }).catch((error) => {
             console.log(error);
         })
