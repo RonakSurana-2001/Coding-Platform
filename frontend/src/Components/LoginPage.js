@@ -3,6 +3,7 @@ import '../Styles/LoginButtonStyle.css';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Components/Footer';
 // import { signInWithGoogle } from './firebase';
 export default function LoginButton(props) {
 
@@ -48,6 +49,7 @@ export default function LoginButton(props) {
         })
     }
     return (
+        <>
         <div className="wecodeLoginPage">
             <div className="wecodeLoginPageHeader">
                 <p>WeCode</p>
@@ -58,5 +60,7 @@ export default function LoginButton(props) {
                 </button>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 }

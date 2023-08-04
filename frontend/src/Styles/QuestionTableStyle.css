@@ -1,28 +1,35 @@
-.QuestionPageContainer{
+.QuestionPageContainer {
     /* background-color: aqua; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 40px;
+    background-color: rgb(184, 224, 211);
 }
-.QuestionPageTable td{
+
+.QuestionPageTable td {
     padding: 20px;
 }
-.button-design{
+
+.button-design {
     width: 25px;
-    height:25px;
+    height: 25px;
     border-radius: 50%;
-    border:none;
+    border: none;
     /* background-color: red; */
     cursor: pointer;
+    
 }
-.container-1{
+
+.container-1 {
     /* background-color: blueviolet; */
+    background-color: rgb(184, 224, 211);
     display: flex;
     flex-direction: row;
     width: 100%;
 }
-.container-2{
+
+.container-2 {
     width: 50%;
     /* background-color: antiquewhite; */
     display: flex;
@@ -31,7 +38,8 @@
     align-items: center;
     padding: 10px;
 }
-.container-3{
+
+.container-3 {
     width: 50%;
     display: flex;
     flex-direction: row;
@@ -39,28 +47,54 @@
     align-items: center;
 }
 
-.container-4{
+.container-4 {
     /* background-color: blue; */
     padding: 20px;
     margin-inline: 20px;
     border: 2px solid palevioletred;
     border-radius: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.container-3 input{
+
+.container-3 input {
     height: 50px;
     width: 50%;
     border-radius: 20px;
-    border:2px solid palevioletred;
+    border: 2px solid palevioletred;
     padding: 5px;
     text-align: center;
     font-size: larger;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
-.toggleColor{
+.toggleColor {
     background-color: green;
+}
+
+@media screen and (max-width:1000px) {
+    .container-1 {
+        /* background-color: blueviolet; */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .container-2 {
+        width: 100%;
+        /* background-color: antiquewhite; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-3 {
+        width: 100%;
+        font-size: small;
+    }
+    .container-4 {
+        margin-bottom: 10px;
+    }
 }

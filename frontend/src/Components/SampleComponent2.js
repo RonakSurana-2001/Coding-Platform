@@ -1,5 +1,6 @@
 import {React,useEffect,useState} from 'react'
 import QuestionTable from './QuestionTable';
+import Footer from './Footer';
 export default function SampleComponent2() {
   const [problems, setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);

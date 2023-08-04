@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import QuestionTable from '../Components/QuestionTable.js';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Footer from './Footer.js';
 
 export default function SampleComponent() {
   const [problems, setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
-  const [getDifflevel,setDifflevel]=useState(null);
+  const [getDifflevel, setDifflevel] = useState(null);
   // const [isSolved,setisSolved]=useState(null);
-
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const getAllQuestion = async () => {
     const response = await fetch("http://localhost:5000/app/sendQuestions", {
       method: 'POST',
@@ -16,6 +34,7 @@ export default function SampleComponent() {
       }
     });
     const json = await response.json();
+    localStorage.setItem("Total",json.length);
     return json;
   };
 
@@ -66,54 +85,68 @@ export default function SampleComponent() {
       }
       setUserProb(num);
     }
-  }, [getDifflevel, setUserProb,problems])
+  }, [getDifflevel, setUserProb, problems])
 
   let func = (vale) => {
     setDifflevel(vale)
   }
 
-  // useEffect(() => {
-  //   if (isSolved != null) {
-  //     const num1 = [];
-  //     let flag=1;
-  //     if (window.location.pathname === '/homePage') {
-  //       for(let i=0;i<userInfo[0].problemsSolved.length;i++)
-  //       {
-  //         for(let j=0;j<userProb.length;j++)
-  //         {
-  //           if((""+userProb[j].sno)===(userInfo[0].problemsSolved[i]))
-  //           {
-  //             num1.push(userProb[j]);
-  //             flag=0;
-  //           }
-  //         }
-  //       }
-  //     }
-  //     if(flag==0){
-  //       setUserProb(num1);
-  //     }
-  //   }
-  // }, [isSolved, setUserProb])
+  const [credentials, setCredentials] = useState({ qsno:"" , qname: "", qlink: "" ,qTopic:"",qLevel:""});
+  const clearForm=()=>{
+    setCredentials({qsno:"" , qname: "", qlink: "" ,qTopic:"",qLevel:""});
+  }
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/app/createQuestions", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ sno: credentials.qsno, name: credentials.qname,qlink: credentials.qlink,qTopic:credentials.qTopic,qLevel:credentials.qLevel})
+    });
+    const json = await response.json();
+    clearForm();
+    window.location.reload();
+  }
 
 
-  // let sortsolved=()=>{
-  //   if(isSolved==null){
-  //     setisSolved(true);
-  //   }
-  //   if(isSolved==="true"){
-  //     setisSolved(false);
-  //   }
-  //   if(isSolved==="false"){
-  //     setisSolved(true);
-  //   }
-  // }
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  }
 
   return (
     <>
       <div className='container-1'>
         <div className='container-2'>
-          <div className='container-4'>Solved</div>
-          <div className='container-4'>Unsolved</div>
+          <div className='container-4' onClick={handleOpen}>Add Question</div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Add Question
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <form onSubmit={handleSubmit}>
+                  <label htmlFor="qsno">S.No</label><br/>
+                  <input type="text" id="qsno" name="qsno" onChange={onChange} value={credentials.qsno}/><br/>
+                  <label htmlFor="qname">Question Name</label><br/>
+                  <input type="text" id="qname" name="qname" onChange={onChange} value={credentials.qname}/><br/>
+                  <label htmlFor="qlink">Question Link</label><br/>
+                  <input type="url" id="qlink" name="qlink" onChange={onChange} value={credentials.qlink}/><br/>
+                  <label htmlFor="qTopic">Question Topic(s)</label><br/>
+                  <input type="text" id="qTopic" name="qTopic" onChange={onChange} value={credentials.qTopic}/><br/>
+                  <label htmlFor="qLevel">Question Level</label><br/>
+                  <input type="text" id="qLevel" name="qLevel" onChange={onChange} value={credentials.qLevel}/><br/>
+                  <button type="Submit">Add</button>
+                  <button onClick={clearForm}>Clear</button>
+                </form>
+              </Typography>
+            </Box>
+          </Modal>
           <div className='container-4' onClick={() => func("Easy")}>Easy</div>
           <div className='container-4' onClick={() => func("Medium")}>Medium</div>
           <div className='container-4' onClick={() => func("Hard")}>Hard</div>
@@ -139,11 +172,11 @@ export default function SampleComponent() {
             <tbody>
               {userProb.map((indx, index) => {
                 const isQuestionSolved = userInfo.length > 0 && userInfo[0].problemsSolved.includes("" + indx.sno);
-                const isQuestionSaved=userInfo.length > 0 && userInfo[0].savedQues.includes(""+indx.sno);
+                const isQuestionSaved = userInfo.length > 0 && userInfo[0].savedQues.includes("" + indx.sno);
                 const color = isQuestionSolved ? "green" : "red";
-                const savedQuesColor=isQuestionSaved ? "green" : "red";
+                const savedQuesColor = isQuestionSaved ? "green" : "red";
                 // console.log(userInfo[0]);
-                return <QuestionTable val={indx} key={index} color={color} savedQuesColor={savedQuesColor}/>;
+                return <QuestionTable val={indx} key={index} color={color} savedQuesColor={savedQuesColor} />;
               })}
             </tbody>
           </table>

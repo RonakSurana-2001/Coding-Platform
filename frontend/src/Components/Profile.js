@@ -49,7 +49,7 @@ function Profile() {
                 label:'Solved',
                 data:topicNames,
                 borderColor:'black',
-                backgroundColor:'aqua',
+                backgroundColor:'blue',
                 borderWidth:1,
             }
         ]
@@ -61,9 +61,10 @@ function Profile() {
         labels: ['Solved', 'Unsolved'],
         datasets: [{
             label: 'Count',
-            data: [isproblemSolved, 10 - isproblemSolved],
+            data: [isproblemSolved, localStorage.getItem("Total")-isproblemSolved],
             backgroundColor: ['green', 'red'],
-            borderColor: ['green', 'red']
+            borderColor: ['green', 'red'],
+            borderWidth:1,
         }]
     }
 
@@ -169,11 +170,11 @@ function Profile() {
                 </div>
                 <div className='part-2'>
                     <div className='part-20'>
-                        <h1>{person != null ? person[0].userName : ""}</h1>
-                        <h1>{person != null ? person[0].userEmail : ""}</h1>
+                        <div>{person != null ? person[0].userName : ""}</div>
+                        <div>{person != null ? person[0].userEmail : ""}</div>
                     </div>
                     <div className='part-21'>
-                        <Doughnut data={data} />
+                        <Doughnut data={data} options={options} />
                     </div>
                 </div>
             </div>

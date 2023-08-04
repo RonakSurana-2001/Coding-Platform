@@ -2,20 +2,21 @@ const express = require('express')
 const router = express.Router();
 const ques=require("../models/QuestionSchema");
 
-const q={
-    "name":"bottom-view-of-binary-tree",
-    "linkQues":"https://practice.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1",
-    "Topic":["Binary Tree","Vector"],
-    "Level":"Medium",
-    "sno":"3"
-};
 
 router.post('/createQuestions',(req,res)=>{
-    //const q=req.body;
+    // console.log(req.body.qTopic);
+    let str=req.body.qTopic;
+    let wordsArray = str.split(',').map(word => word.replace(/"/g, ''));
+    const q={
+        "sno":Number(req.body.sno),
+        "linkQues":req.body.qlink,
+        "Topic":wordsArray,
+        "Level":req.body.qLevel,
+        "name":req.body.name
+    };
     res.json(q);
     const ques1=ques(q);
     ques1.save();
-    console.log(q);
 })
 
 
