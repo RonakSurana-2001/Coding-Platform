@@ -7,6 +7,7 @@ import Footer from '../Components/Footer';
 // import { signInWithGoogle } from './firebase';
 export default function LoginButton(props) {
 
+    console.warn = () => {};
 
     let setDetailsInStorage = async (result) => {
         const response = await fetch("http://localhost:5000/auth/setUserDetails", {
@@ -18,7 +19,6 @@ export default function LoginButton(props) {
                 usersId: result.user.uid, emailUser: result.user.email, userPhoto: result.user.photoURL, userName: result.user.displayName
             })
         });
-        const json = await response.json();
     };
 
 
@@ -39,7 +39,7 @@ export default function LoginButton(props) {
     const signInWithGoogle = () => {
         signInWithPopup(auth, provider).then((result) => {
             navigate("/homePage");
-            if(result!=undefined && result.length!=0){
+            if(result!==undefined && result.length!==0){
                 setDetailsInStorage(result);
             }
             localStorage.setItem("isLogin", "true");

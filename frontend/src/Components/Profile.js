@@ -22,8 +22,8 @@ function Profile() {
     const [userInfo, setUserInfo] = useState([]);
     const [topicNames, settopicNames] = useState([]);
     const [topicNamesSize, settopicNamesSize] = useState([]);
-    const [isSet, setisSet] = useState(false);
 
+    console.warn = () => {};
 
     const getUserInfo = async () => {
         const response = await fetch("http://localhost:5000/auth/setUserDetails", {

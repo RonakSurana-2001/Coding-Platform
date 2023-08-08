@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import QuestionTable from '../Components/QuestionTable.js';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import Footer from './Footer.js';
 
 export default function SampleComponent() {
   const [problems, setProblems] = useState([]);
@@ -104,7 +102,6 @@ export default function SampleComponent() {
       },
       body: JSON.stringify({ sno: credentials.qsno, name: credentials.qname,qlink: credentials.qlink,qTopic:credentials.qTopic,qLevel:credentials.qLevel})
     });
-    const json = await response.json();
     clearForm();
     window.location.reload();
   }
