@@ -48,4 +48,7 @@ Make sure you have MongoDb compass installed in your system.
 
 The React App frontend will run on localhost:3000    
 
-The React App backend will run on localhost:5000 
+The React App backend will run on localhost:5000  
+
+## Live Site
+https://master--spectacular-wisp-7c29eb.netlify.app/
