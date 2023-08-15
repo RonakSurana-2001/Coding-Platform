@@ -3,20 +3,27 @@ const { Schema } = mongoose;
 
 const questionData = new Schema({
     name: {
-        type: String
+        type: String,
+        unique:true,
+        required: true
     },
     linkQues:{
-        type:String
+        type:String,
+        unique:true,
+        required: true
     },
     Topic: {
-        type: Array
+        type: Array,
+        required: true
     },
     Level:{
-        type:String
+        type:String,
+        required: true
     },
     sno: {
         type: Number,
-        unique:true
+        unique:true,
+        required: true
     }
 });
 
