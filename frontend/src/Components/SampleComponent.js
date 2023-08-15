@@ -3,7 +3,7 @@ import QuestionTable from '../Components/QuestionTable.js';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
+let baseUrl="https://coding-app-xwu4.onrender.com";
 export default function SampleComponent() {
   const [problems, setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);
@@ -25,7 +25,7 @@ export default function SampleComponent() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const getAllQuestion = async () => {
-    const response = await fetch("http://localhost:5000/app/sendQuestions", {
+    const response = await fetch(`${baseUrl}/app/sendQuestions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export default function SampleComponent() {
   };
 
   const getUserDetails = async () => {
-    const response = await fetch("http://localhost:5000/auth/getUser", {
+    const response = await fetch(`${baseUrl}/auth/getUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ export default function SampleComponent() {
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/app/createQuestions", {
+    const response = await fetch(`${baseUrl}/app/createQuestions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

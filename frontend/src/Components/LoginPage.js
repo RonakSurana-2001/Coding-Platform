@@ -5,12 +5,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Components/Footer';
 // import { signInWithGoogle } from './firebase';
+
+let baseUrl="https://coding-app-xwu4.onrender.com";
+
 export default function LoginButton(props) {
-
-    console.warn = () => {};
-
     let setDetailsInStorage = async (result) => {
-        const response = await fetch("http://localhost:5000/auth/setUserDetails", {
+        const response = await fetch(`${baseUrl}/auth/setUserDetails`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

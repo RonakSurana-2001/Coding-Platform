@@ -3,7 +3,7 @@ import '../Styles/ProfileStyle.css'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { Bar } from 'react-chartjs-2'
-
+let baseUrl="https://coding-app-xwu4.onrender.com";
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
     BarElement,
@@ -26,7 +26,7 @@ function Profile() {
     console.warn = () => {};
 
     const getUserInfo = async () => {
-        const response = await fetch("http://localhost:5000/auth/setUserDetails", {
+        const response = await fetch(`${baseUrl}/auth/setUserDetails`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ function Profile() {
     }
 
     const getUserDetails = async () => {
-        const response = await fetch("http://localhost:5000/auth/getUser", {
+        const response = await fetch(`${baseUrl}/auth/getUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ function Profile() {
     }, [])
 
     const getAllQuestion = async () => {
-        const response = await fetch("http://localhost:5000/app/sendQuestions", {
+        const response = await fetch(`${baseUrl}/app/sendQuestions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

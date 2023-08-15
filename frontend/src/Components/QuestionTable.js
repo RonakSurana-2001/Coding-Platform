@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import '../Styles/QuestionTableStyle.css';
-
+let baseUrl="https://coding-app-xwu4.onrender.com";
 export default function QuestionTable(props) {
 
   const [buttonColor, setButtonColor] = useState(props.color);
@@ -8,7 +8,7 @@ export default function QuestionTable(props) {
 
 
   const updateUserDetails = async () => {
-    const response = await fetch("http://localhost:5000/auth/getUpdate", {
+    const response = await fetch(`${baseUrl}/auth/getUpdate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export default function QuestionTable(props) {
   };
   
   const updateUserDetailsSaved = async () => {
-    const response = await fetch("http://localhost:5000/auth/savedQues", {
+    const response = await fetch(`${baseUrl}/auth/savedQues`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

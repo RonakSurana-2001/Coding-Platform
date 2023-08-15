@@ -4,9 +4,9 @@ export default function SampleComponent2() {
   const [problems, setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
-
+  let baseUrl="https://coding-app-xwu4.onrender.com";
   const getAllQuestion = async () => {
-    const response = await fetch("http://localhost:5000/app/sendQuestions", {
+    const response = await fetch(`${baseUrl}/app/sendQuestions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ export default function SampleComponent2() {
   };
 
   const getUserDetails = async () => {
-    const response = await fetch("http://localhost:5000/auth/getUser", {
+    const response = await fetch(`${baseUrl}/auth/getUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
