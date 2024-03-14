@@ -1,10 +1,11 @@
 import {React,useEffect,useState} from 'react'
 import QuestionTable from './QuestionTable';
 export default function SampleComponent2() {
-  const [problems, setProblems] = useState([]);
+  const [problems,setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   let baseUrl="https://coding-app-xwu4.onrender.com";
+  // let baseUrl="http://localhost:3001";
   const getAllQuestion = async () => {
     const response = await fetch(`${baseUrl}/app/sendQuestions`, {
       method: 'POST',
@@ -27,7 +28,6 @@ export default function SampleComponent2() {
       })
     });
     const json = await response.json();
-    // console.log(json);
     return json;
   };
 

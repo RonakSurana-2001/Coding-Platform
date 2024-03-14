@@ -13,6 +13,9 @@ const UserInfo = new Schema({
     },
     userPhoto:{
         type:String
+    },
+    isAdmin:{
+        type:String
     }
 });
 

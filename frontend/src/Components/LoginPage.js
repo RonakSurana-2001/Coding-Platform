@@ -7,10 +7,11 @@ import Footer from '../Components/Footer';
 // import { signInWithGoogle } from './firebase';
 
 let baseUrl="https://coding-app-xwu4.onrender.com";
+// let baseUrl="http://localhost:3001";
 
 export default function LoginButton(props) {
     let setDetailsInStorage = async (result) => {
-        const response = await fetch(`${baseUrl}/auth/setUserDetails`, {
+        fetch(`${baseUrl}/auth/setUserDetails`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

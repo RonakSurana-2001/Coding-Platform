@@ -1,30 +1,32 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const questionData = new Schema({
+const questionDataSchema = new Schema({
     name: {
         type: String,
-        unique:true,
+        unique: true,
         required: true
     },
-    linkQues:{
-        type:String,
-        unique:true,
+    linkQues: {
+        type: String,
         required: true
     },
     Topic: {
         type: Array,
         required: true
     },
-    Level:{
-        type:String,
+    Level: {
+        type: String,
         required: true
     },
     sno: {
         type: Number,
-        unique:true,
+        required: true
+    },
+    question: {
+        type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('questionData', questionData);
+module.exports = mongoose.model('questionData', questionDataSchema);

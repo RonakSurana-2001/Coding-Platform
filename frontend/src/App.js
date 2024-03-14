@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import SampleComponent2 from './Components/SampleComponent2';
 import Profile from './Components/Profile';
+import QuestionDetail from './Components/QuestionDetail';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
           <Route
             path="/profile"
             element={<Profile />}
+          />
+          <Route
+            path="/question/:id"
+            element={<QuestionDetail />}
           />
         </Routes>
       </BrowserRouter>

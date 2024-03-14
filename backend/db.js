@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// mongodb://localhost:27017/NewCodingPlatform
 const connectToMongo = async () => {
   try {
     await mongoose.connect("mongodb+srv://ronaksurana2017:ronaksuranaproject@cluster0.npwieeh.mongodb.net/?retryWrites=true&w=majority",{

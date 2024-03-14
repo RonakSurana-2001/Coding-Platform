@@ -12,7 +12,8 @@ router.post('/createQuestions',(req,res)=>{
         "linkQues":req.body.qlink,
         "Topic":wordsArray,
         "Level":req.body.qLevel,
-        "name":req.body.name
+        "name":req.body.name,
+        "question":req.body.questionSet
     };
     res.json(q);
     const ques1=ques(q);
@@ -26,6 +27,15 @@ router.post('/sendQuestions',(req,res)=>{
     })
     .catch((error)=>{
         console.log("Some Error Occurred");
+    })
+})
+
+router.post('/sendParticularQuestion',(req,res)=>{
+    ques.findOne({'sno':req.body.id}).then((data)=>{
+        res.json(data);
+    })
+    .catch((error)=>{
+        console.log("ID not found");
     })
 })
 

@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import '../Styles/QuestionTableStyle.css';
 let baseUrl="https://coding-app-xwu4.onrender.com";
+// let baseUrl="http://localhost:3001"
 export default function QuestionTable(props) {
 
   const [buttonColor, setButtonColor] = useState(props.color);
@@ -51,7 +52,7 @@ export default function QuestionTable(props) {
     <>
       <tr className='QuestionPageTable'>
         <td>{props.val.sno}</td>
-        <td><a href={props.val.linkQues}>{props.val.name}</a></td>
+        <td><a href={`${baseUrl}/question/${props.val.sno}`}>{props.val.name}</a></td>
         <td>
           {props.val.Topic.map((val, index) => {
             if (index === 0) {
@@ -74,6 +75,7 @@ export default function QuestionTable(props) {
           <button className='button-design' onClick={toggleSavedButtonColor}
             style={{ backgroundColor: savedButtonColor }}></button>
         </td>
+        <td><a href={props.val.linkQues}>Link</a></td>
       </tr>
     </>
   );

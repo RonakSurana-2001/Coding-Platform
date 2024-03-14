@@ -3,7 +3,6 @@ const router = express.Router();
 const UserData = require('../models/UserDataSchema')
 const UserInfo=require('../models/UserInformationSchema')
 
-
 router.post('/getUser', (req, res) => {
     const usersId = req.body.userId;
     // console.log(usersId);
@@ -20,7 +19,6 @@ router.post('/getUser', (req, res) => {
             res.json(usersData);
         }
         else {
-            // console.log("Already Exists");
             res.json(users);
         }
     })
@@ -104,8 +102,12 @@ router.post('/savedQues', (req, res) => {
         });
 })
 
+
+//------------------------------------------------------------------------
+
+//User Information If user exists then send details else add the user
+
 router.post('/setUserDetails', (req, res) => {
-    // console.log(req.body.emailUser,req.body.usersId);
     UserInfo.find({ useId: req.body.usersId }).exec().then((users) => {
         if(users.length==0){
             console.log(req.body.usersId);
@@ -113,11 +115,11 @@ router.post('/setUserDetails', (req, res) => {
                 useId:req.body.usersId,
                 userName:req.body.userName,
                 userEmail:req.body.emailUser,
-                userPhoto:req.body.userPhoto
+                userPhoto:req.body.userPhoto,
+                isAdmin:"false"
             };
             const userI=UserInfo(data);
             userI.save();
-            // console.log(userI);
             res.json(data);
         }
         else{
@@ -128,5 +130,23 @@ router.post('/setUserDetails', (req, res) => {
             console.log("Some Error encountered");
         });
 })
+
+//------------------------------------------------------------------------
+
+
+router.post('/adminDetails', async (req, res) => {
+    let { emailId, type } = req.body;
+    try {
+        let user = await UserInfo.findOneAndUpdate({userEmail:emailId},{isAdmin:type});
+        console.log(user);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        return res.status(200).json({ message: 'Admin status updated successfully', user });
+    } catch (error) {
+        console.error("Error updating admin status:", error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 module.exports = router;

@@ -47,6 +47,8 @@
     font-size: 35px;
     border: none;
     background-color: darkturquoise;
+    margin: 2px;
+    border-radius: 6px;
 }
 
 .navbar-items {
@@ -59,6 +61,57 @@
     color: black;
 }
 .y1{
+    cursor: pointer;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: darkturquoise;
+    min-width: auto;
+    z-index: 1;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.navbar-main-button {
+    position: relative;
+}
+
+.navbar-main-button:hover .dropdown-content {
+    display: block;
+    top: 100%; /* Adjust this value as needed */
+}
+
+.dropdown-content div{
+    /* border: 5px solid red; */
+    padding: 10px;
+}
+
+.admin-container{
+    /* background-color: aqua; */
+    padding: 10px;
+}
+
+.admin-container input{
+    width: 70%;
+    height: 50px;
+    font-size:larger;
+}
+
+.admin-container-button{
+    /* background-color: blue; */
+    padding: 15px;
+}
+
+.admin-container-button button{
+    font-size: larger;
+    margin: 10px;
+    border: none;
+    background-color: aqua;
+    padding: 10px;
+    border-radius: 6px;
     cursor: pointer;
 }
 

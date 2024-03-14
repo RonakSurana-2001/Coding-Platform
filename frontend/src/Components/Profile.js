@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScal
 import { Doughnut } from "react-chartjs-2";
 import { Bar } from 'react-chartjs-2'
 let baseUrl="https://coding-app-xwu4.onrender.com";
+// let baseUrl="http://localhost:3001"
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
     BarElement,
@@ -83,8 +84,9 @@ function Profile() {
             })
         });
         const json = await response.json();
-        setproblemSovedArray(json[0].problemsSolved);
-        return json[0].problemsSolved.length;
+        const problemsSolved = json[0]?.problemsSolved || [];
+        setproblemSovedArray(problemsSolved);
+        return problemsSolved.length;
     };
 
     useEffect(() => {

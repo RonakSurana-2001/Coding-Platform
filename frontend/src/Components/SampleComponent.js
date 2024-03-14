@@ -4,11 +4,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 let baseUrl="https://coding-app-xwu4.onrender.com";
+// let baseUrl = "http://localhost:3001";
 export default function SampleComponent() {
   const [problems, setProblems] = useState([]);
   const [userProb, setUserProb] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [getDifflevel, setDifflevel] = useState(null);
+  const [question, setQuestion] = useState("")
   // const [isSolved,setisSolved]=useState(null);
   const style = {
     position: 'absolute',
@@ -32,7 +34,7 @@ export default function SampleComponent() {
       }
     });
     const json = await response.json();
-    localStorage.setItem("Total",json.length);
+    localStorage.setItem("Total", json.length);
     return json;
   };
 
@@ -49,6 +51,27 @@ export default function SampleComponent() {
     const json = await response.json();
     return json;
   };
+
+  let [checkAdmin, setcheckAdmin] = useState(false);
+
+  const getUserProfile = async () => {
+    const response = await fetch(`${baseUrl}/auth/setUserDetails`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        usersId: localStorage.getItem("userId")
+      })
+    })
+    let json = await response.json()
+    console.log(checkAdmin)
+    setcheckAdmin(json[0].isAdmin)
+  }
+
+  useEffect(() => {
+    getUserProfile()
+  }, [])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,33 +112,54 @@ export default function SampleComponent() {
     setDifflevel(vale)
   }
 
-  const [credentials, setCredentials] = useState({ qsno:"" , qname: "", qlink: "" ,qTopic:"",qLevel:""});
-  const clearForm=()=>{
-    setCredentials({qsno:"" , qname: "", qlink: "" ,qTopic:"",qLevel:""});
+  const [credentials, setCredentials] = useState({ qsno: "", qname: "", qlink: "", qTopic: "", qLevel: "" });
+  const clearForm = () => {
+    setCredentials({ qsno: "", qname: "", qlink: "", qTopic: "", qLevel: "" });
+    setQuestion("");
   }
-  const handleSubmit=async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${baseUrl}/app/createQuestions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ sno: credentials.qsno, name: credentials.qname,qlink: credentials.qlink,qTopic:credentials.qTopic,qLevel:credentials.qLevel})
-    });
-    clearForm();
-    window.location.reload();
-  }
+    try {
+      const response = await fetch(`${baseUrl}/app/createQuestions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sno: credentials.qsno,
+          name: credentials.qname,
+          qlink: credentials.qlink,
+          qTopic: credentials.qTopic,
+          qLevel: credentials.qLevel,
+          questionSet: question
+        })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to submit form data');
+      }
+      clearForm();
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  };
 
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
+
+  const onChangeProblemStatement = (e) => {
+    setQuestion(e.target.innerText)
+  }
+
+
   return (
     <>
       <div className='container-1'>
         <div className='container-2'>
-          <div className='container-4' onClick={handleOpen}>Add Question</div>
+          {checkAdmin == "true" && <div className='container-4' onClick={handleOpen}>Add Question</div>}
           <Modal
             open={open}
             onClose={handleClose}
@@ -128,16 +172,29 @@ export default function SampleComponent() {
               </Typography>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <form onSubmit={handleSubmit}>
-                  <label htmlFor="qsno">S.No</label><br/>
-                  <input type="text" id="qsno" name="qsno" onChange={onChange} value={credentials.qsno}/><br/>
-                  <label htmlFor="qname">Question Name</label><br/>
-                  <input type="text" id="qname" name="qname" onChange={onChange} value={credentials.qname}/><br/>
-                  <label htmlFor="qlink">Question Link</label><br/>
-                  <input type="url" id="qlink" name="qlink" onChange={onChange} value={credentials.qlink}/><br/>
-                  <label htmlFor="qTopic">Question Topic(s)</label><br/>
-                  <input type="text" id="qTopic" name="qTopic" onChange={onChange} value={credentials.qTopic}/><br/>
-                  <label htmlFor="qLevel">Question Level</label><br/>
-                  <input type="text" id="qLevel" name="qLevel" onChange={onChange} value={credentials.qLevel}/><br/>
+                  <label htmlFor="qsno">S.No</label><br />
+                  <input type="text" id="qsno" name="qsno" onChange={onChange} value={credentials.qsno} /><br />
+                  <label htmlFor="qname">Question Name</label><br />
+                  <input type="text" id="qname" name="qname" onChange={onChange} value={credentials.qname} /><br />
+                  <label htmlFor="qlink">Question Link</label><br />
+                  <input type="url" id="qlink" name="qlink" onChange={onChange} value={credentials.qlink} /><br />
+                  <label htmlFor="qTopic">Question Topic(s)</label><br />
+                  <input type="text" id="qTopic" name="qTopic" onChange={onChange} value={credentials.qTopic} /><br />
+                  <label htmlFor="qLevel">Question Level</label><br />
+                  <input type="text" id="qLevel" name="qLevel" onChange={onChange} value={credentials.qLevel} /><br />
+                  <label htmlFor="pStatement">Problem Statement</label><br />
+                  <div
+                    className="pStatement"
+                    contentEditable="true"
+                    style={{
+                      width: '100%',
+                      height: '150px',
+                      border: '1px solid black',
+                      padding: '5px',
+                      overflowY: 'auto'
+                    }}
+                    onInput={onChangeProblemStatement}
+                  />
                   <button type="Submit">Add</button>
                   <button onClick={clearForm}>Clear</button>
                 </form>
@@ -164,6 +221,7 @@ export default function SampleComponent() {
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Level</td>
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }} >Mark Done</td>
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Save</td>
+                <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Origin</td>
               </tr>
             </thead>
             <tbody>
