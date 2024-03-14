@@ -65,6 +65,7 @@ export default function SampleComponent2() {
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Level</td>
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }} >Mark Done</td>
                 <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Save</td>
+                <td style={{ textAlign: "center", borderRight: "2px solid black" }}>Origin</td>
               </tr>
             </thead>
             <tbody>
