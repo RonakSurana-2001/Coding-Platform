@@ -23,7 +23,7 @@ export default function QuestionTable(props) {
   };
   
   const updateUserDetailsSaved = async () => {
-    const response = await fetch(`${baseUrl}/auth/savedQues`, {
+    const response = await fetch('https://togetherwecode1.netlify.app/auth/savedQues', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
