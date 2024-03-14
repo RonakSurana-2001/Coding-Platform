@@ -23,7 +23,7 @@ export default function QuestionTable(props) {
   };
   
   const updateUserDetailsSaved = async () => {
-    const response = await fetch('https://togetherwecode1.netlify.app/auth/savedQues', {
+    const response = await fetch(`${baseUrl}/auth/savedQues`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export default function QuestionTable(props) {
     <>
       <tr className='QuestionPageTable'>
         <td>{props.val.sno}</td>
-        <td><a href={`${baseUrl}/question/${props.val.sno}`}>{props.val.name}</a></td>
+        <td><a href={`https://togetherwecode1.netlify.app/question/${props.val.sno}`}>{props.val.name}</a></td>
         <td>
           {props.val.Topic.map((val, index) => {
             if (index === 0) {
