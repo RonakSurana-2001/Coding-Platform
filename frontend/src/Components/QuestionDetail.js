@@ -92,6 +92,7 @@ function QuestionDetail() {
             return response.text();
         })
         .then(text => {
+            console.log(text)
             setOutput(text);
         })
         .catch(error => {
