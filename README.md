@@ -1,5 +1,5 @@
 
-# Project Title
+# Online Coding Platform
 This is a online coding platform where user can log in using the google account and practice DSA problems. This Application provides feature to sort problems based on the difficutly level. User can also save the problem. User can also mark the problem as done or not and see in the graph the topics of which they have solved problems. User is provided with origin that is from where problem was taken. When user clicks on a problem on left user can read the problem and on right an IDE provided (Hackerearth API) to code and test on custom test cases.
 
 # Tech Stack
