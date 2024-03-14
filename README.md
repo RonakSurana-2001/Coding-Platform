@@ -1,8 +1,6 @@
 
 # Project Title
-This is a Coding Tracking Platform named WeCode to keep track of your Coding Progress.  
-Generally it is seen that the DSA sheets like Love babbar final 450 comes in Spreadsheet format it becomes difficult to sort Levels of questions ,Keep track of Topics of which we have solved questions,how many questions we have solved etc. To solve this issue I have created a web application to solve these problems. 
-
+This is a online coding platform where user can log in using the google account and practice DSA problems. This Application provides feature to sort problems based on the difficutly level. User can also save the problem. User can also mark the problem as done or not and see in the graph the topics of which they have solved problems. User is provided with origin that is from where problem was taken. When user clicks on a problem on left user can read the problem and on right an IDE provided (Hackerearth API) to code and test on custom test cases.
 
 # Tech Stack
 
@@ -10,7 +8,7 @@ Generally it is seen that the DSA sheets like Love babbar final 450 comes in Spr
 
 **Server:** Node, Express,Mongo DB
 
-**API:** Graph JS, Google API
+**API:** Graph JS, Google API, Hackerearth API
 
 
 
@@ -18,10 +16,11 @@ Generally it is seen that the DSA sheets like Love babbar final 450 comes in Spr
 
 - Login/Logout using Google Id
 - Sort Questions based on difficultly level
-- Add Questions
+- Add Questions Admin Only
 - Save questions for future Reference
 - Keep track of topics of which you have solved the questions  
 - Track how many questions you have solved and how many are left
+- IDE to Solve problem Alongside reading it
 
 ## Installation
 
