@@ -76,7 +76,7 @@ function QuestionDetail() {
             if(result1){
                 if(result1.result.run_status.output){
                     setOutput(result1.result.run_status.output)
-                    await putOutput()
+                    // await putOutput()
                 }
             }
         } catch (error) {
