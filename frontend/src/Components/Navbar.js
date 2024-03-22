@@ -4,8 +4,8 @@ import '../Styles/NavbarStyle.css'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-// let baseUrl="https://coding-app-xwu4.onrender.com";
-let baseUrl = "http://localhost:3001"
+let baseUrl="https://coding-app-xwu4.onrender.com";
+// let baseUrl = "http://localhost:3001"
 function Navbar(props) {
     let sizePage=window.outerWidth;
     const style = {
