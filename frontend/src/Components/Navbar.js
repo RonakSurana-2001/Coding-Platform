@@ -4,15 +4,28 @@ import '../Styles/NavbarStyle.css'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-let baseUrl="https://coding-app-xwu4.onrender.com";
-// let baseUrl = "http://localhost:3001"
+// let baseUrl="https://coding-app-xwu4.onrender.com";
+let baseUrl = "http://localhost:3001"
 function Navbar(props) {
+    let sizePage=window.outerWidth;
     const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 400,
+        bgcolor: 'background.paper',
+        border: 'none',
+        boxShadow: 24,
+        p: 4,
+        borderRadius:'10px'
+    };
+    const style1 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 200,
         bgcolor: 'background.paper',
         border: 'none',
         boxShadow: 24,
@@ -123,7 +136,7 @@ function Navbar(props) {
                                             aria-labelledby="modal-modal-title"
                                             aria-describedby="modal-modal-description"
                                         >
-                                            <Box sx={style}>
+                                            <Box {...(sizePage>1000?{sx:style}:{sx:style1})}>
                                                 <Typography id="modal-modal-title" variant="h6" component="h2">
                                                     Add or Remove Admin
                                                 </Typography>
