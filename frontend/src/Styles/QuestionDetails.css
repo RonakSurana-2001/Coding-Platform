@@ -143,3 +143,38 @@ html, body {
     width: 100%;
     height: 50px;
 }
+
+
+@media screen and (max-width:1000px) {
+    .mainContainer{
+        display: flex;
+        /* background-color: rgb(90, 90, 109); */
+        height:400px;
+        flex-direction: column;
+        margin-top: 15px;
+        /* border:2px solid black; */
+        border-radius: 35px;
+    }
+    .leftSide{
+        width: 100%;
+    }
+    
+    .rightSide{
+        width:100%;
+        /* border:1px solid black; */
+        border-left: 2px solid black;
+    }
+    .leftSide-container-1{
+        height: 20%;
+        /* background-color: aqua; */
+        text-align: center;
+    }
+    .leftSide-container-2{
+        height: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding: 40px;
+        font-weight:500;
+    }
+}
