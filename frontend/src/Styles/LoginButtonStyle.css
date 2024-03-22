@@ -50,3 +50,16 @@
     flex-direction: row;
     width: 50%;
 }
+
+@media screen and (max-width:1000px) {
+    .wecodeLoginPageHeader{
+        font-size: 80px;
+    }
+    .wecodeLoginPageButton button{
+        width: 30%;
+        height: 40px;
+        font-weight: bolder;
+        font-style: italic;
+        font-size: larger;
+    }
+}
