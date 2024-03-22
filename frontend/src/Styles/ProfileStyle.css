@@ -80,7 +80,23 @@
         justify-content:center ;
         align-items: center;
     }
+    .part-1{
+        padding: 20px;
+        /* background-color: blanchedalmond; */
+    }
+    .part-11{
+        padding: 20px;
+    }
     .part-10{
         padding: 30px;
+    }
+    .part-2{
+        padding: 30px;
+    }
+    .part-20{
+        padding: 10px;
+    }
+    .part-20 div{
+        font-size: medium;
     }
 }

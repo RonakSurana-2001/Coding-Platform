@@ -1,0 +1,13 @@
+@media screen and (max-width: 755px) {
+    table th{
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        display: inline-block;
+        width: auto;
+    }
+
+}

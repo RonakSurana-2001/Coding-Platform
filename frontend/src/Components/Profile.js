@@ -51,12 +51,12 @@ function Profile() {
                 data:topicNames,
                 borderColor:'black',
                 backgroundColor:'blue',
-                borderWidth:1,
+                borderWidth:1,     
             }
         ]
     }
     
-
+    console.log(isproblemSolved)
 
     const data = {
         labels: ['Solved', 'Unsolved'],
@@ -65,10 +65,9 @@ function Profile() {
             data: [isproblemSolved, localStorage.getItem("Total")-isproblemSolved],
             backgroundColor: ['green', 'red'],
             borderColor: ['green', 'red'],
-            borderWidth:1,
+            borderWidth:1,  
         }]
     }
-
     const options = {
 
     }
@@ -167,7 +166,7 @@ function Profile() {
                         <img src={(person != undefined && person[0]!=null)?person[0].userPhoto : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fgithub.com%2FAshwinvalento%2Fcartoon-avatar&psig=AOvVaw2d_xIcHECCbJi9H00NwOsJ&ust=1691145551813000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDIn5qmwIADFQAAAAAdAAAAABAE"} alt="Profile Picture" />
                     </div>
                     <div className='part-11'>
-                        <Bar data={dataQues} options={options}></Bar>
+                        <Bar data={dataQues} options={options} />
                     </div>
                 </div>
                 <div className='part-2'>
@@ -176,7 +175,7 @@ function Profile() {
                         <div>{person != null ? person[0].userEmail : ""}</div>
                     </div>
                     <div className='part-21'>
-                        <Doughnut data={data} options={options} />
+                        <Doughnut data={data} options={options} className='doughnut'/>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import QuestionTable from '../Components/QuestionTable.js';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import "../Styles/TableStyle.css"
 let baseUrl="https://coding-app-xwu4.onrender.com";
 // let baseUrl = "http://localhost:3001";
 export default function SampleComponent() {
@@ -65,7 +66,7 @@ export default function SampleComponent() {
       })
     })
     let json = await response.json()
-    console.log(checkAdmin)
+    console.log("Admin Detaiils ",checkAdmin)
     setcheckAdmin(json[0].isAdmin)
   }
 
@@ -205,9 +206,9 @@ export default function SampleComponent() {
           <div className='container-4' onClick={() => func("Medium")}>Medium</div>
           <div className='container-4' onClick={() => func("Hard")}>Hard</div>
         </div>
-        <div className='container-3'>
+        {/* <div className='container-3'>
           <input type="text" placeholder='Search For Question Name'></input>
-        </div>
+        </div> */}
       </div>
 
       {userProb.length > 0 && (
