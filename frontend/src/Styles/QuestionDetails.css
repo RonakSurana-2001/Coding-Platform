@@ -152,8 +152,6 @@ html, body {
         /* background-color: rgb(90, 90, 109); */
         height:400px;
         flex-direction: column;
-        margin-bottom: 15px;
-        /* border:2px solid black; */
         border-radius: 35px;
     }
     .leftSide{
@@ -177,5 +175,8 @@ html, body {
         justify-content: center;
         padding: 40px;
         font-weight:500;
+    }
+    .right-container-312{
+        margin-bottom: 80px;
     }
 }
