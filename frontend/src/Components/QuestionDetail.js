@@ -70,7 +70,6 @@ function QuestionDetail() {
                 "client-id":  process.env.REACT_APP_CLIENT_ID
             }
         };
-        console.log("Okk")
         try {
             const response = await fetch(url, options);
             const result1 = await response.json();
