@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import '../Styles/QuestionDetails.css'
+import axios from "axios"
 var cors = require('cors')
 
 let baseUrl="https://coding-app-xwu4.onrender.com";
@@ -52,16 +53,15 @@ function QuestionDetail() {
             const response = await fetch(url, options);
             const result = await response.json();
             sethe_id(result.he_id)
-            console.log(result)
-            await sendOutput()
+            sendOutput(result.he_id)
         } catch (error) {
             console.error(error)
         }
 
     }
 
-    const sendOutput = async () => {
-        const url = `https://api.hackerearth.com/v4/partner/code-evaluation/submissions/${he_id}`;
+    const sendOutput = async (id) => {
+        const url = `https://api.hackerearth.com/v4/partner/code-evaluation/submissions/${id}`;
         const options = {
             method: 'GET',
             headers: {
@@ -70,34 +70,22 @@ function QuestionDetail() {
                 "client-id":  process.env.REACT_APP_CLIENT_ID
             }
         };
+        console.log("Okk")
         try {
             const response = await fetch(url, options);
             const result1 = await response.json();
+            console.log(result1)
+            console.log(result1.result.run_status.output)
+            const info=await axios.get(result1.result.run_status.output)
             if(result1){
                 if(result1.result.run_status.output){
-                    setOutput(result1.result.run_status.output)
-                    // await putOutput()
+                    setOutput(info.data)
                 }
             }
         } catch (error) {
         }
     }
 
-    const putOutput = async () => {
-        await fetch(`${output}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(text => {
-            console.log(text)
-            setOutput(text);
-        })
-        .catch(error => {
-        });
-    };
 
     const [question,sendQuestion]=useState("Question Here");
 
