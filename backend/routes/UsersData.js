@@ -138,7 +138,7 @@ router.post('/adminDetails', async (req, res) => {
     let { emailId, type } = req.body;
     try {
         let user = await UserInfo.findOneAndUpdate({userEmail:emailId},{isAdmin:type});
-        console.log(user);
+        // console.log(user);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
