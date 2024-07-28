@@ -49,5 +49,9 @@ The React App frontend will run on localhost:3000
 
 The React App backend will run on localhost:3001 
 
+## API Documentation
+
+https://coding-app-xwu4.onrender.com/docs/
+
 ## Live Site
 https://togetherwecode1.netlify.app/
